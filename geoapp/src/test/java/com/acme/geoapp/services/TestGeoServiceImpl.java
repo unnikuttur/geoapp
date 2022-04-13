@@ -29,7 +29,7 @@ class TestGeoServiceImpl
 		GeoObject first = new GeoObject();
 		first.setDisplay_name("first");
 		GeoObject second = new GeoObject();
-		second.setDisplay_name("first");
+		second.setDisplay_name("second");
 
 		    // Set up the mock to return *different* objects for the first and second call
 		 Mockito.when(resttemplate.getForObject(Mockito.any(String.class),Mockito.any())).thenReturn(first, second);
@@ -37,6 +37,22 @@ class TestGeoServiceImpl
 		 Assertions.assertTrue(result.equals(first.getDisplay_name()));
 		 result = geoService.getPlacesWithCordinate("9.999", "10.545");
 		 Assertions.assertTrue(result.equals(first.getDisplay_name()));
+		 
+		 /*
+		 result = geoService.getPlacesWithCordinate("9.999", "10.545");
+		 Assertions.assertTrue(result.equals(first.getDisplay_name()));
+		 Thread.sleep((1000*60*60*60)-1);
+		 result = geoService.getPlacesWithCordinate("9.999", "10.545");
+		 Assertions.assertTrue(result.equals(first.getDisplay_name()));
+		 */
+		 
+		 /*
+		 result = geoService.getPlacesWithCordinate("9.999", "10.545");
+		 Assertions.assertTrue(result.equals(first.getDisplay_name()));
+		 Thread.sleep((1000*60*60*60)+1);
+		 result = geoService.getPlacesWithCordinate("9.999", "10.545");
+		 Assertions.assertTrue(result.equals(second.getDisplay_name()));
+		 */
 		 
 		 //-ve
 		 Assertions.assertNotNull(geoService.getPlacesWithCordinate(null, null));
